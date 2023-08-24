@@ -13,6 +13,7 @@ export interface Data {
     type: string
     image: string
     height: number
+    moves: []
     // Otras propiedades del Pokemon si las tienes
 }
 
@@ -59,7 +60,8 @@ export const getAllItems = async ({ perPage = 10 }: { perPage?: number } = {}): 
                 name: dataResponse.data.name,
                 type: dataResponse.data.types[0].type.name,
                 image: dataResponse.data.sprites.other.home.front_default,
-                height: Number(dataResponse.data.height)
+                height: Number(dataResponse.data.height),
+                moves: dataResponse.data.moves
             });
         }
 

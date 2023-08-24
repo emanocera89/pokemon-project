@@ -1,14 +1,23 @@
-import Link from "next/link"
+import { useState } from 'react'
+import Link from 'next/link'
 import Image from 'next/image'
+
+interface Move {
+    move: {
+        name: string;
+    };
+}
 
 interface Props {
     id: number
     name: string
     image: string
     type: string
+    moves: Move[]
 }
 
 const Card: React.FC<Props> = (props) => {
+    const [moveCounter, setMoveCounter] = useState<number>(0)
 
     function getTypeColors() {
         switch (props.type) {
@@ -45,19 +54,40 @@ const Card: React.FC<Props> = (props) => {
 
     const typeColors = getTypeColors();
 
+    const handleIncrementCounter = (e: React.MouseEvent<HTMLButtonElement>) => {
+        e.preventDefault()
+        if (moveCounter < 5) {
+            setMoveCounter(moveCounter + 1)
+        }
+    }
+
     return (
         <li>
             <Link href={'/about'}>
-                <li className='shadow-md rounded bg-white p-6' key={props.id}>
+                <li className='shadow-xs hover:shadow-lg rounded bg-white p-6' key={props.id}>
                     <Image
                         src={props.image}
                         width={500}
                         height={500}
                         alt={props.name}
                     />
-                    <div className='w-full flex mt-6'>
-                        <h3 className='text-xl inline-flex font-semibold capitalize'>{props.name}</h3>
-                        <span className={`table my-auto ml-auto text-xs font-semibold py-1 px-2 uppercase rounded uppercase ${typeColors}`}>{props.type}</span>
+                    <div className='w-full flex mt-6 flex-col'>
+                        <div className='w-full flex'>
+                            <h3 className='text-xl inline-flex font-semibold capitalize'>{props.name}</h3>
+                            <span className={`table my-auto ml-auto text-xs font-semibold py-1 px-2 uppercase rounded uppercase ${typeColors}`}>{props.type}</span>
+                        </div>
+
+                        <ul>
+                            {props.moves.map((move, index) => (
+                                index < moveCounter &&
+                                <li key={index}>{move.move.name}</li>
+                            ))}
+                        </ul>
+
+                        <div className="w-full">
+                            <button onClick={handleIncrementCounter} className='border-blue-500 hover:bg-blue-500 border-2 text-blue-500 hover:text-white font-semibold py-2 px-4 rounded mt-8 w-full border-solid transition-all duration-100 ease'>Add movement</button>
+                        </div>
+
                     </div>
                 </li>
             </Link>

@@ -28,6 +28,7 @@ export default function Home() {
     getAllItems({ perPage: quantity }).then((response) => {
       setInitialData(response);
       setData(response);
+      console.log(response)
       setIsLoading(false);
     });
   }, [quantity]);
