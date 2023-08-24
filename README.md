@@ -1,38 +1,49 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Pokémon Project
 
-## Getting Started
+Este proyecto fué desarrollado como prueba técnica para un proceso de selección. Se utilizaron las tecnologías Next.js, Typescript, React, TailwindCss y MaterialUI.
 
-First, run the development server:
+La aplicación consiste en la visualización y búsqueda de Pokémons. Al hacer click también se puede ver el detalle de cada Pokémon. Para la obtención de los datos se utilizó la API pública de pokeapi.co.
+Además de la búsqueda por caracteres se pueden filtrar los resultados mediante un modal, donde se puede seleccionar el tipo de Pokémon (fuego, agua, tierra, etc) y la altura máxima.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+## Estructura de carpetas
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- <b>Components:</b> Aquí estan todos los componentes que se utilizan dentro de la app
+- <b>Hooks:</b> En esta carpeta están los custom hooks que se pueden reutilizar dentro de la app. Actualmente se incluyó el hook 'useTypeColor' que permite agregar unos estilos a un elemento dependiendo del tipo de Pokémon.
+- <b>Pages:</b> En esta carpeta se incluyen todas las páginas del sitio, principalmente la Home y Detalle del Pokémon.
+- <b>Services:</b> Aquí se encuentra el archivo .ts que contiene todas las consultas a la API.
+- <b>Types:</b> Dentro de esta carpeta está el archivo donde se definen los tipos de datos.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## Cómo ejecutar el proyecto
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+Para ejecutar el proyecto es necesario desde la consola ejecutar los siguientes comandos:
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+    // clonar el proyecto localmente
+    git clone https://github.com/emanocera89/pokemon-project
+    
+    //entrar dentro de la carpeta del proyecto e instalar dependencias
+    cd pokemon-project
+    npm install
+    
+    //ejecutar la app
+    npm run dev
+Luego de realizado esto, se puede acceder a la app localmente desde http://localhost:3000/
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-## Learn More
+## Funcionamiento de la app
 
-To learn more about Next.js, take a look at the following resources:
+Debido a que la API no está preparada especialmente para la búsqueda y filtrado — es decir, que no existen endpoints para estas features — me vi forzado a implementarlo desde el front.
+Por lo tanto, lo que se hace es un for each para cada uno de los ids correspondiente a cada Pokémon y se obtiene la data de esa forma. Luego se hace un remapeo de los datos para definir la estructura deseada. No es la mejor manera de hacer la implementación ya que la obtención de datos se hace muy lenta, por lo que la app tarda en mostrar resultados. Por este motivo, se limitó la cantidad de Pokémon a mostrar solo a un máximo de 60.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Librerías utilizadas en la app
+- Next
+- Typescript
+- React
+- TailwindCSS
+- MaterialUI
+- Axios
+- ESLint
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+App desarrollada por Emmanuel Nocera — Agosto 2023.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+[Website](https://emmanuelnocera.com) — [Email](mailto:ema.nocera.89@gmail.com) — [LinkedIn](https://www.linkedin.com/in/emanocera/) — [Github](https://github.com/emanocera89) 
