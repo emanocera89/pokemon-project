@@ -1,22 +1,14 @@
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react'
+import { useRouter } from 'next/router'
 import Image from 'next/image'
-import { getItem } from '@/services';
-import TypeLabel from '@/components/typeLabel';
-
-interface Pokemon {
-    name: string;
-    types: { type: { name: string } }[];
-    height: number;
-    weight: number;
-    moves: { move: { name: string } }[];
-    sprites: { other: { home: { front_default: string } } }
-}
+import { getItem } from '@/services'
+import TypeLabel from '@/components/typeLabel'
+import { Item } from '@/types'
 
 function PokemonDetail() {
     const router = useRouter();
     const { id } = router.query;
-    const [data, setData] = useState<Pokemon | null>(null);
+    const [data, setData] = useState<Item | null>(null);
     
     useEffect(() => {
         if (id) {

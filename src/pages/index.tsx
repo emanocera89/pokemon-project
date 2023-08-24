@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import List from '@/components/list';
-import { getAllItems, Data } from '../services/index';
+import { getAllItems } from '../services/index';
 import Search from '@/components/search';
+import { Items } from '@/types';
 
 const DEFAULT_QUANTITY = 20;
 const MAX_QUANTITY = 60;
@@ -13,12 +14,12 @@ interface Filters {
 
 export default function Home() {
   const [quantity, setQuantity] = useState(DEFAULT_QUANTITY);
-  const [data, setData] = useState<Data[]>([]);
+  const [data, setData] = useState<Items[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [searchText, setSearchText] = useState('');
   const [filters, setFilters] = useState<Filters>({ type: 'all', height: 100 });
 
-  const [initialData, setInitialData] = useState<Data[]>([]);
+  const [initialData, setInitialData] = useState<Items[]>([]);
 
   useEffect(() => {
     getAllItems({ perPage: quantity }).then((response) => {
