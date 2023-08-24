@@ -42,7 +42,6 @@ Por lo tanto, lo que se hace es un for each para cada uno de los ids correspondi
 - MaterialUI
 - Axios
 - ESLint
-- 
 ## Deploy
 
 La app se encuentra deployada en https://poke-project-082023.netlify.app/
