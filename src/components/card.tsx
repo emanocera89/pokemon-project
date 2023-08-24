@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import useTypeColors from '@/hooks/useTypeColor'
+import TypeLabel from './typeLabel';
 
 interface Move {
     move: {
@@ -22,7 +22,6 @@ const MAX_MOVES = 5
 
 const Card: React.FC<Props> = (props) => {
     const [moveCounter, setMoveCounter] = useState<number>(0)
-    const typeColors = useTypeColors(props.type || '')
 
     const handleIncrementCounter = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault()
@@ -45,7 +44,7 @@ const Card: React.FC<Props> = (props) => {
                     <div className='w-full flex mt-6 flex-col'>
                         <div className='w-full flex'>
                             <h3 className='text-xl inline-flex font-semibold capitalize'>{props.name}</h3>
-                            <span className={`table my-auto ml-auto text-xs font-semibold py-1 px-2 uppercase rounded uppercase ${typeColors}`}>{props.type}</span>
+                            <TypeLabel type={props.type} className='text-sm table ml-auto'>{props.type}</TypeLabel>
                         </div>
 
                         <ul>

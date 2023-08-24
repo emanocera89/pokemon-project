@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import Image from 'next/image'
 import { getItem } from '@/services';
+import TypeLabel from '@/components/typeLabel';
 
 interface Pokemon {
     name: string;
@@ -16,12 +17,11 @@ function PokemonDetail() {
     const router = useRouter();
     const { id } = router.query;
     const [data, setData] = useState<Pokemon | null>(null);
-
+    
     useEffect(() => {
         if (id) {
             getItem({ id: id as string }).then((response) => {
                 setData(response);
-                console.log(response);
             });
         }
     }, [id]);
@@ -41,10 +41,7 @@ function PokemonDetail() {
                     <div className='w-2/4 pl-6'>
                         <h3 className='text-5xl font-bold capitalize'>{data.name}</h3>
 
-                        <span className={`my-3 inline-block text-lg font-semibold py-1 px-2 uppercase rounded uppercase text-stone-600 bg-stone-200`}>{data.types[0].type.name}</span>
-
-
-
+                        <TypeLabel type={data.types[0].type.name} className='text-lg mt-3'>{data.types[0].type.name}</TypeLabel>
 
                         <div className="relative overflow-x-auto">
                             <table className="w-full text-lg text-left text-gray-500 dark:text-gray-400">
@@ -67,8 +64,6 @@ function PokemonDetail() {
                                     </tr>
                                 </tbody>
                             </table>
-
-
 
                             <table className="w-full text-md text-left text-gray-500 dark:text-gray-400 my-4">
                                 <thead className="text-xs text-gray-700 uppercase bg-stone-200 dark:bg-gray-700 dark:text-gray-400">
@@ -93,7 +88,7 @@ function PokemonDetail() {
                     </div>
                 </div>
             ) : (
-                <p>Loading...</p> // Cambia "Loading..." por un párrafo para mantener consistencia
+                <p>Loading...</p>
             )}
         </div>
     );
