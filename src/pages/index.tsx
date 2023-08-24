@@ -90,10 +90,10 @@ export default function Home() {
         </>
         :
         <>
-        <span className='text-2xl font-medium'>{error}</span>
-        <button className='bg-blue-500 hover:bg-blue-700 text-white font-medium py-2 px-12 rounded mt-8 text-lg' onClick={getData}>Try again</button>
+          <span className='text-2xl font-medium'>{error}</span>
+          <button className='bg-blue-500 hover:bg-blue-700 text-white font-medium py-2 px-12 rounded mt-8 text-lg' onClick={getData}>Try again</button>
         </>
-        
+
       }
     </div>
   )

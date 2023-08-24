@@ -27,6 +27,7 @@ export const getAllItems = async ({ perPage = 10 }: { perPage?: number } = {}): 
         for (let i = 1; i <= perPage; i++) {
             const dataResponse = await axios.get(`${baseUrl}/${i}`, axiosConfig)
             arr.push({
+                id: i,
                 name: dataResponse.data.name,
                 type: dataResponse.data.types[0].type.name,
                 image: dataResponse.data.sprites.other.home.front_default,

@@ -32,7 +32,7 @@ const Card: React.FC<Props> = (props) => {
 
     return (
         <li key={props.id}>
-            <Link href="/[id]" as={`/${props.id + 1}`}>
+            <Link href="/[id]" as={`/${props.id}`}>
 
                 <div className='shadow-xs hover:shadow-lg rounded bg-white p-6'>
                     <Image
