@@ -1,8 +1,8 @@
-import { Data } from '../services/index'
+import { Items } from '@/types'
 import Card from './card'
 
 interface Props {
-    data: Data[]
+    data: Items[]
 }
 
 const List: React.FC<Props> = (props) => {
