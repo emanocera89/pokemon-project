@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
 import {
     FormControl,
     IconButton,
@@ -14,61 +14,60 @@ import {
     Stack,
     Chip,
     TextField
-} from '@mui/material';
-import { SelectChangeEvent } from '@mui/material/Select';
-import FilterListOutlinedIcon from '@mui/icons-material/FilterListOutlined';
+} from '@mui/material'
+import { SelectChangeEvent } from '@mui/material/Select'
+import FilterListOutlinedIcon from '@mui/icons-material/FilterListOutlined'
 
 interface Props {
-    handleInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-    handleApplyFilters: (type: string, height: number) => void;
+    handleInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void
+    handleApplyFilters: (type: string, height: number) => void
 }
 
-const TYPES = ['all', 'normal', 'grass', 'fire', 'earth', 'water', 'bug', 'electric', 'poison', 'ground', 'fairy', 'fighting', 'rock', 'ghost', 'psychic'];
+const TYPES = ['all', 'normal', 'grass', 'fire', 'earth', 'water', 'bug', 'electric', 'poison', 'ground', 'fairy', 'fighting', 'rock', 'ghost', 'psychic']
 const INITIAL_VALUES = { type: 'all', height: 100 }
 
 const Search: React.FC<Props> = (props) => {
-    const { handleInputChange, handleApplyFilters } = props;
-    const [open, setOpen] = useState<boolean>(false);
-    const [type, setType] = useState<string>(INITIAL_VALUES.type);
-    const [height, setHeight] = useState<number>(INITIAL_VALUES.height);
+    const { handleInputChange, handleApplyFilters } = props
+    const [open, setOpen] = useState<boolean>(false)
+    const [type, setType] = useState<string>(INITIAL_VALUES.type)
+    const [height, setHeight] = useState<number>(INITIAL_VALUES.height)
 
     const handleClickOpen = () => {
-        setOpen(true);
-    };
+        setOpen(true)
+    }
 
     const handleClose = () => {
-        setOpen(false);
-    };
+        setOpen(false)
+    }
 
     const handleTypeChange = (e: SelectChangeEvent) => {
-        const value = e.target.value as string;
-        setType(value);
-    };
+        const value = e.target.value as string
+        setType(value)
+    }
 
     const handleSliderChange = (event: Event, newValue: number | number[]) => {
-        setHeight(newValue as number);
-    };
+        setHeight(newValue as number)
+    }
 
     const handleApply = () => {
-        handleApplyFilters(type, height);
+        handleApplyFilters(type, height)
         handleClose()
-    };
+    }
 
     const handleReset = () => {
         setType(INITIAL_VALUES.type)
         setHeight(INITIAL_VALUES.height)
-        handleApplyFilters(INITIAL_VALUES.type, INITIAL_VALUES.height);
-        handleClose()
-    };
+        handleApplyFilters(INITIAL_VALUES.type, INITIAL_VALUES.height)
+    }
 
     const handleResetType = () => {
         setType(INITIAL_VALUES.type)
-        handleApplyFilters(INITIAL_VALUES.type, height);
+        handleApplyFilters(INITIAL_VALUES.type, height)
     }
 
     const handleResetHeight = () => {
         setHeight(INITIAL_VALUES.height)
-        handleApplyFilters(type, INITIAL_VALUES.height);
+        handleApplyFilters(type, INITIAL_VALUES.height)
     }
 
     return (
@@ -100,10 +99,10 @@ const Search: React.FC<Props> = (props) => {
 
             <Dialog
                 open={open}
-                onClose={handleClose}
                 aria-labelledby='alert-dialog-title'
                 aria-describedby='alert-dialog-description'
                 fullWidth
+                disableEscapeKeyDown={true}
             >
                 <DialogTitle id='alert-dialog-title'>{"Search Filters"}</DialogTitle>
                 <DialogContent >
@@ -142,7 +141,7 @@ const Search: React.FC<Props> = (props) => {
                 </DialogActions>
             </Dialog>
         </div>
-    );
-};
+    )
+}
 
-export default Search;
+export default Search
