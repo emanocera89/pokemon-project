@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
+import useTypeColors from '@/hooks/useTypeColor'
 
 interface Move {
     move: {
@@ -16,55 +17,25 @@ interface Props {
     moves: Move[]
 }
 
+// Cantidad máxima de movimientos
+const MAX_MOVES = 5
+
 const Card: React.FC<Props> = (props) => {
     const [moveCounter, setMoveCounter] = useState<number>(0)
-
-    function getTypeColors() {
-        switch (props.type) {
-            case 'normal':
-                return 'text-stone-600 bg-stone-200';
-            case 'grass':
-                return 'text-green-600 bg-green-200';
-            case 'fire':
-                return 'text-red-600 bg-red-200';
-            case 'water':
-                return 'text-blue-600 bg-blue-200';
-            case 'bug':
-                return 'text-orange-600 bg-orange-200';
-            case 'electric':
-                return 'text-yellow-600 bg-yellow-200';
-            case 'poison':
-                return 'text-emerald-600 bg-emerald-200';
-            case 'ground':
-                return 'text-amber-600 bg-amber-200';
-            case 'fairy':
-                return 'text-indigo-600 bg-indigo-200';
-            case 'fighting':
-                return 'text-purple-600 bg-purple-200';
-            case 'rock':
-                return 'text-yellow-900 bg-yellow-500';
-            case 'ghost':
-                return 'text-gray-600 bg-gray-200';
-            case 'psychic':
-                return 'text-teal-600 bg-teal-200';
-            default:
-                return 'default-class';
-        }
-    }
-
-    const typeColors = getTypeColors();
+    const typeColors = useTypeColors(props.type || '')
 
     const handleIncrementCounter = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault()
-        if (moveCounter < 5) {
+        if (moveCounter < MAX_MOVES) {
             setMoveCounter(moveCounter + 1)
         }
     }
 
     return (
-        <li>
+        <li key={props.id}>
             <Link href="/[id]" as={`/${props.id + 1}`}>
-                <li className='shadow-xs hover:shadow-lg rounded bg-white p-6' key={props.id}>
+
+                <div className='shadow-xs hover:shadow-lg rounded bg-white p-6'>
                     <Image
                         src={props.image}
                         width={500}
@@ -85,11 +56,17 @@ const Card: React.FC<Props> = (props) => {
                         </ul>
 
                         <div className="w-full">
-                            <button onClick={handleIncrementCounter} className='border-blue-500 hover:bg-blue-500 border-2 text-blue-500 hover:text-white font-semibold py-2 px-4 rounded mt-8 w-full border-solid transition-all duration-100 ease'>Add movement</button>
+                            <button
+                                onClick={handleIncrementCounter}
+                                disabled={moveCounter >= MAX_MOVES}
+                                className='border-blue-500 hover:bg-blue-500 border-2 text-blue-500 hover:text-white font-semibold py-2 px-4 rounded mt-8 w-full border-solid transition-all duration-100 ease'
+                            >
+                                Add movement
+                            </button>
                         </div>
 
                     </div>
-                </li>
+                </div>
             </Link>
         </li>
     )
