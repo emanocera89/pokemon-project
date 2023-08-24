@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Inter, Work_Sans } from 'next/font/google';
 import List from '@/components/list';
 import { getAllItems, Data } from '../services/index';
 import Search from '@/components/search';
-
-const inter = Inter({ subsets: ['latin'] });
-const worksans = Work_Sans({ subsets: ['latin'] });
 
 const DEFAULT_QUANTITY = 20;
 const MAX_QUANTITY = 60;
@@ -69,11 +65,11 @@ export default function Home() {
   const showMoreButtonCondition = (quantity <= MAX_QUANTITY && searchText === '') || isLoading;
 
   return (
-    <div className={`flex min-h-screen flex-col items-center p-24 ${worksans.className}`}>
+    <div className='flex min-h-screen flex-col items-center p-24'>
       <Search handleInputChange={handleInputChange} handleApplyFilters={handleApplyFilters} />
       <List data={data} />
       {showMoreButtonCondition && (
-        <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-8' onClick={handleShowMore}>
+        <button disabled={isLoading} className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-8' onClick={handleShowMore}>
           {isLoading ? 'Loading...' : 'Show More'}
         </button>
       )}
