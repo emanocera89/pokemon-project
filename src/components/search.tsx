@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
 import {
     FormControl,
-    Input,
-    InputLabel,
-    InputAdornment,
     IconButton,
     Dialog,
     DialogTitle,
@@ -15,7 +12,8 @@ import {
     Slider,
     Typography,
     Stack,
-    Chip
+    Chip,
+    TextField
 } from '@mui/material';
 import { SelectChangeEvent } from '@mui/material/Select';
 import FilterListOutlinedIcon from '@mui/icons-material/FilterListOutlined';
@@ -74,27 +72,28 @@ const Search: React.FC<Props> = (props) => {
     }
 
     return (
-        <div className='w-full flex mb-5'>
-            <FormControl sx={{ m: 1, width: '25ch' }} variant='standard'>
-                <Input
-                    id='standard-adornment-password'
+        <div className='w-full flex flex-col mb-5'>
+            <FormControl fullWidth variant='standard'>
+                <TextField
+                    id='search-input-field'
                     type='text'
+                    sx={{ backgroundColor: 'white' }}
+                    variant='filled'
                     placeholder='Search...'
+                    fullWidth
+                    hiddenLabel
                     onChange={handleInputChange}
-                    endAdornment={
-                        <InputAdornment position='end'>
-                            <IconButton
-                                onClick={handleClickOpen}
-                                aria-label='toggle password visibility'
-                            >
-                                <FilterListOutlinedIcon />
-                            </IconButton>
-                        </InputAdornment>
-                    }
+                    InputProps={{
+                        endAdornment: <IconButton
+                        onClick={handleClickOpen}
+                    >
+                        <FilterListOutlinedIcon />
+                    </IconButton>
+                    }}
                 />
             </FormControl>
 
-            <Stack direction="row" spacing={1}>
+            <Stack direction="row" spacing={1} className='mt-4'>
                 { type !== INITIAL_VALUES.type && <Chip label={`Type: ${type}`} onDelete={handleResetType} onClick={handleClickOpen} /> }
                 { height !== INITIAL_VALUES.height && <Chip label={`Height: ${height}`} onDelete={handleResetHeight} onClick={handleClickOpen} /> }
             </Stack>

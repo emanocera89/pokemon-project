@@ -69,7 +69,7 @@ export default function Home() {
       <Search handleInputChange={handleInputChange} handleApplyFilters={handleApplyFilters} />
       <List data={data} />
       {showMoreButtonCondition && (
-        <button disabled={isLoading} className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-8' onClick={handleShowMore}>
+        <button disabled={isLoading} className='bg-blue-500 hover:bg-blue-700 text-white font-medium py-2 px-12 rounded mt-8 text-lg' onClick={handleShowMore}>
           {isLoading ? 'Loading...' : 'Show More'}
         </button>
       )}
