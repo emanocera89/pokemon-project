@@ -39,7 +39,7 @@ function PokemonDetail() {
                         <div className='w-full flex shadow-xs rounded bg-white p-6'>
                             <div className='w-2/4'>
                                 <Image
-                                    src={data?.sprites.other.home.front_default}
+                                    src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${id}.png`}
                                     width={500}
                                     height={500}
                                     alt={data?.name || ''}
