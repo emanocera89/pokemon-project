@@ -42,7 +42,14 @@ Por lo tanto, lo que se hace es un for each para cada uno de los ids correspondi
 - MaterialUI
 - Axios
 - ESLint
+- 
+## Deploy
 
+La app se encuentra deployada en https://poke-project-082023.netlify.app/
+
+Actualmente hace falta corregir un bug que hace que algunas clases de TailwindCss no se carguen correctamente.
+
+## Autor
 
 App desarrollada por Emmanuel Nocera — Agosto 2023.
 
