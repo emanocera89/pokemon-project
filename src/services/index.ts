@@ -19,10 +19,14 @@ export interface Data {
 
 export interface Item {
     name: string;
-    // Otras propiedades del Pokemon si las tienes
+    types: { type: { name: string } }[];
+    height: number;
+    weight: number;
+    moves: { move: { name: string } }[];
+    sprites: { other: { home: { front_default: string } }}
 }
 
-export const getItem = async ({ id }: { id?: number } = {}): Promise<Item> => {
+export const getItem = async ({ id }: { id?: string } = {}): Promise<Item> => {
     try {
         const dataResponse = await axios.get(`${baseUrl}/${id}`, axiosConfig);
         const data: Item = dataResponse.data

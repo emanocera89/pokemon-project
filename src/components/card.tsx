@@ -63,7 +63,7 @@ const Card: React.FC<Props> = (props) => {
 
     return (
         <li>
-            <Link href={'/about'}>
+            <Link href="/[id]" as={`/${props.id + 1}`}>
                 <li className='shadow-xs hover:shadow-lg rounded bg-white p-6' key={props.id}>
                     <Image
                         src={props.image}
